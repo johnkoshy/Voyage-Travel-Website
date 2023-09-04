@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bootstrap Web</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- setting space before the first menu item -->
+    <style>
+        .left-margin {
+            margin-left: 200px;
+        }
+
+        .seperator {
+            border-right: 2px solid #154074;
+        }
+
+        /* to fill the image width to full screen */
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* set the height of all images */
+        img.img_size {
+            height: 400px;
+        }
+
+        /* show box style */
+        .box_show:link,
+        .box_show:visited {
+            background-color: rgb(58, 247, 247);
+            color: white;
+            padding: 10px 25px;
+            font-size: 13px;
+            width: 22%;
+            height: 19%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .box_show:hover,
+        .box_show:active {
+            background-color: cyan;
+        }
+
+        /* more box style */
+        .box_more:link,
+        .box_more:visited {
+            color: black;
+            border: 2px solid rgb(246, 247, 246);
+            padding: 10px 20px;
+            font-size: 13px;
+            width: 18%;
+            height: 20%;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .box_more:hover,
+        .box_more:active {
+            background-color: green;
+            color: white;
+        }
+
+        /* SEARCH box style*/
+        .box_search:link,
+        .box_search:visited {
+            background-color: rgb(58, 247, 247);
+            color: white;
+            padding: 10px 30px;
+            font-size: 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .box_search:hover,
+        .box_search:active {
+            background-color: cyan;
+        }
+
+        /* tag box style */
+        .box_tag:link,
+        .box_tag:visited {
+            color: black;
+            border: 2px solid rgb(246, 247, 246);
+            padding: 8px 20px;
+            font-size: 13px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .box_tag:hover,
+        .box_tag:active {
+            background-color: green;
+            color: white;
+        }
+
+        /* to hide the pagination button at the lower side */
+        .carousel-indicators li {
+            visibility: hidden;
+        }
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 25%;
+            height: 15%;
+        }
+
+        /* navigation menu font size */
+        .text_size {
+            font-size: 14px;
+        }
+
+        /* to zoom the image */
+
+        .zoom {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .zoom img {
+            width: 100%;
+            transition: 0.5s all ease-in-out;
+        }
+
+        .zoom:hover img {
+            transform: scale(1.5);
+        }
+
+        /* to show images next to each other */
+
+        .element {
+            display: inline-block;
+        }
+
+        /* comment box */
+
+        .box {
+            width: 250px;
+            height: 75px;
+            background-color: rgb(252, 250, 250);
+            color: #050505;
+            padding: 20px;
+            position: relative;
+            margin: 40px;
+            float: left;
+            border: 2px solid black;
+        }
+
+        .box.arrow-bottom:after {
+            content: " ";
+            position: absolute;
+            right: 30px;
+            bottom: -15px;
+            border-top: 15px solid black;
+            border-right: 15px solid white;
+            border-left: 15px solid white;
+            border-bottom: none;
+        }
+
+        /* to create round icon images  */
+
+        .round_img {
+            border-radius: 50%;
+        }
+
+        /* image and blur effect */
+
+        /* .bgImgCenter {
+            background-image: url("Altare_della_Patria_(Roma).jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            background-size: cover;
+            
+            filter: blur(2px);
+            -webkit-filter: blur(2px);
+        } */
+
+        /* drop down menu */
+
+        .dropbtn {
+            background-color: #3498DB;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: #2980B9;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+
+        /* back to top button setting */
+
+        #myBtn {
+            display: none;
+            /* position: fixed; */
+            bottom: 1px;
+            right: 610px;
+            z-index: 99;
+            font-size: 18px;
+            border: none;
+            outline: none;
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 20%;
+            background-color: cyan;
+            margin-left: 610px;
+        }
+
+        #myBtn:hover {
+            background-color: #555;
+        }
+
+        /* .triangle-up {
+            width: 0;
+            height: 0;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+            border-bottom: 50px solid #555;
+        } */
+    </style>
+
+    <!-- library used for adding icons -->
+    <script src="https://kit.fontawesome.com/75b09f8ac8.js" crossorigin="anonymous"></script>
+
+    <!-- script for the dropdown button -->
+
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div style="background-color: rgb(28, 28, 100);">
+
+        <!-- inbuilt class used to set the menus horizontally -->
+        <nav class="navbar navbar-expand-sm">
+
+            <ul class="navbar-nav">
+                <li class="left-margin seperator"><a style="color: aliceblue;" href="#"><i
+                            class="fa-solid fa-user">&nbsp;&nbsp;</i>Agent Login</a>&nbsp;&nbsp;&nbsp;</li>
+                &nbsp;&nbsp;&nbsp;
+                <li class="seperator"><a style="color: aliceblue;" href="#"><i
+                            class="fa-solid fa-user">&nbsp;&nbsp;</i>Customer Login</a>&nbsp;&nbsp;&nbsp;</li>
+                &nbsp;&nbsp;&nbsp;
+                <li class="seperator"><a style="color:aliceblue" href="#"><i
+                            class="fa-sharp fa-regular fa-file">&nbsp;&nbsp;</i>Not a Member ? <span
+                            style="color:rgb(73, 94, 212)">Register</span></a>&nbsp;&nbsp;&nbsp;</li>&nbsp;&nbsp;
+                <li class="seperator">&nbsp;<a style="color:aliceblue" href="#">Call Us Now
+                        815-123-4567</a>&nbsp;&nbsp;&nbsp;</li>
+
+                <li>
+                    <a href="https://www.facebook.com/"><i style="margin-left: 200px; color:aliceblue"
+                            class="fa-brands fa-facebook-f"></i></a>&nbsp;&nbsp;
+                    <a href="https://twitter.com/"><i style="color:aliceblue"
+                            class="fa-brands fa-twitter"></i></a>&nbsp;&nbsp;
+                    <a href="https://www.tumblr.com/"><i style="color:aliceblue"
+                            class="fa-brands fa-tumblr"></i></a>&nbsp;&nbsp;
+                    <a href="https://www.instagram.com/"><i style="color:aliceblue"
+                            class="fa-brands fa-instagram"></i></a>&nbsp;&nbsp;
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <div>
+        <nav class="navbar navbar-expand-sm">
+            <h2 class="left-margin">V</h2>
+            <h2 style="color: rgb(40, 221, 221)">O</h2>
+            <h2>YAGE</h2>
+            <ul class="navbar-nav">
+                <li style="margin-left: 400px;"><a href="#"
+                        style="color: rgb(40, 221, 221)">&nbsp;&nbsp;HOME</a>&nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="text_size"><a href="#" style="color: black">DESTINATIONS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </li>
+                <li class="text_size"><a href="#" style="color: black">CRUISES</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li class="text_size"><a href="#" style="color: black">SPECIALS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li class="text_size"><a href="#" style="color: black">HOLIDAYS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li class="text_size"><a href="#" style="color: black">BLOGS</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="img_size" src="la.jpg" alt="Los Angeles">
+                <div class="carousel-caption" style="height: 250px;">
+                    <h3>TO TRAVEL IS TO LIVE<br></h3>
+                    <p>You Don't Need Magic To Disappear. All you need is a destination.</p><br>
+                    <a class="box_show" href="#" style="color:aliceblue">SHOW ON THE MAP</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a class="box_more" href="#" style="color:aliceblue">MORE INFO</a>
+
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="img_size" src="chicago.jpg" alt="Chicago" width="1100" height="500">
+            </div>
+            <div class="carousel-item">
+                <img class="img_size" src="ny.jpg" alt="New York" width="1100" height="500">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon" style="background-color: grey"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon fd" style="background-color: grey"></span>
+        </a>
+    </div>
+    <div style="background-color: #154074;">
+        <nav class="navbar navbar-expand-sm ">
+            <ul class="navbar-nav">
+                <li class="left-margin seperator"><a href="#"><span style="color: aliceblue;">FIND
+                            YOUR<br><strong>HOLYDAYS</strong></span></a>&nbsp;&nbsp;&nbsp;
+                </li>
+                <li>
+                    <div>
+                        <nav class="navbar navbar-expand-sm">
+
+                            <ul class="navbar-nav ">
+
+                                <li><a style="color: aliceblue;" href="#">WHERE</a>&nbsp;&nbsp;&nbsp;</li>
+                                &nbsp;&nbsp;&nbsp;
+                                <input id="target" type="text" placeholder="destination" />&nbsp;&nbsp;&nbsp;&nbsp;
+                                <li><a style="color: aliceblue;" href="#">WHEN</a>&nbsp;&nbsp;&nbsp;</li>
+                                &nbsp;&nbsp;&nbsp;
+                                <input type="date" id="date" value="select date" />
+                            </ul>
+                        </nav>
+                    </div>
+                </li>
+                <li>
+
+                </li>
+                <li>
+                    <a class="box_search" href="#" style="color:aliceblue">Search</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-sm">
+            <ul class="navbar-nav">
+                <li>
+                    <strong style="margin-left: 540px;">SPECIAL OFFERS</strong><br>
+                    <p style="margin-left: 490px;">Best 2014 packages where people love to stay!</p>
+
+
+
+                    <div class="navbar navbar-expand-sm zoom element dropdown">
+                        <ul class="navbar-nav">
+                            <li>
+                                <img class="zoom" src="us.jpg" alt="USA">
+                            </li>
+                            <button onclick="myFunction()" class="dropbtn">
+                                <p style="font-size: 12px;">Statue of Liberty - USA</p><br>
+                                <p style="font-size: 8px;">New Destination</p>
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+
+                        </ul>
+                    </div>
+
+
+
+                    <div class="navbar navbar-expand-sm zoom element dropdown">
+                        <ul class="navbar-nav">
+                            <li>
+                                <img class="zoom" src="ss.jpg" alt="Sychelles_1">
+                            </li>
+                            <button onclick="myFunction()" class="dropbtn">
+                                <p style="font-size: 12px;">Spectacular Seychelles</p><br>
+                                <p style="font-size: 8px;">New Destination</p>
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </ul>
+                    </div>
+
+
+                    <div class="navbar navbar-expand-sm zoom element dropdown">
+                        <ul class="navbar-nav">
+                            <li>
+                                <img class="zoom" src="hk.jpg" alt="Hong Kong">
+                            </li>
+                            <button onclick="myFunction()" class="dropbtn">
+                                <p style="font-size: 12px;">Hong Kong & Macua</p><br>
+                                <p style="font-size: 8px;">Bonus Extras!</p>
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </ul>
+                    </div>
+
+
+                    <div class="navbar navbar-expand-sm zoom element dropdown">
+                        <ul class="navbar-nav">
+                            <li>
+                                <img class="zoom" src="vt.jpg" alt="Vietnam">
+                            </li>
+                            <button onclick="myFunction()" class="dropbtn">
+                                <p style="font-size: 12px;">Vietnam Highlights</p><br>
+                                <p style="font-size: 8px;">New Destination</p>
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </ul>
+                    </div>
+
+
+                    <div class="navbar navbar-expand-sm zoom element dropdown">
+                        <ul class="navbar-nav">
+                            <li>
+                                <img class="zoom" src="ss2.jpg" alt="Sychelles_2">
+                            </li>
+                            <button onclick="myFunction()" class="dropbtn">
+                                <p style="font-size: 12px;">Spectacular Seychelles</p><br>
+                                <p style="font-size: 8px;">New Destination</p>
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </ul>
+                    </div>
+
+
+                    <div class="navbar navbar-expand-sm zoom element dropdown">
+                        <ul class="navbar-nav">
+                            <li>
+                                <img class="zoom" src="db.jpg" alt="Dubai">
+                            </li>
+                            <button onclick="myFunction()" class="dropbtn">
+                                <p style="font-size: 12px;">Dubai</p><br>
+                                <p style="font-size: 8px;">New Destination</p>
+                            </button>
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#home">Home</a>
+                                <a href="#about">About</a>
+                                <a href="#contact">Contact</a>
+                            </div>
+                        </ul>
+                    </div>
+
+                </li>
+            </ul>
+
+        </nav>
+
+    </div>
+
+    <div class="bgImgCenter" style="background-color: #154074;">
+        <nav class="navbar navbar-expand-sm">
+            <ul class="navbar-nav">
+                <li style="color:rgb(246, 247, 246)">
+                    <strong style="margin-left: 540px;">HOLIDAYS TYPE</strong><br>
+                    <p style="margin-left: 490px;">get explore your dream to travel the world!</p>
+                    <div class="navbar navbar-expand-sm element">
+                        <ul class="navbar-nav">
+                            <li style="margin-left: 240px;">
+                                <a href="#"><img class=" round_img" src="ship.jpg" width="120px" height="120px"
+                                        alt="ship"></a>
+                                <p style="text-align: center;">Cruise</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="navbar navbar-expand-sm element">
+                        <ul class="navbar-nav">
+                            <li>
+                                <a href="#"><img class="round_img" src="city.jpg" width="120px" height="120px"
+                                        alt="city"></a>
+                                <p style="text-align: center;">City Breaks</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div style="color: cyan" class="navbar navbar-expand-sm element">
+                        <ul class="navbar-nav">
+                            <li>
+                                <a href="#"><img class="round_img" src="honey.jpg" width="120px" height="120px"
+                                        alt="honey"></a>
+                                <p style="text-align: center;">Honeymoon</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="navbar navbar-expand-sm element">
+                        <ul class="navbar-nav">
+                            <li>
+                                <a href="#"><img class="round_img" src="adv.png" width="120px" height="120px"
+                                        alt="adventure"></a>
+                                <p style="text-align: center;">Adventure</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="navbar navbar-expand-sm element">
+                        <ul class="navbar-nav">
+                            <li>
+                                <a href="#"><img class="round_img" src="tree.png" width="120px" height="120px"
+                                        alt="tree"></a>
+                                <p style="text-align: center;">Safari</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="navbar navbar-expand-sm element">
+                        <ul class="navbar-nav">
+                            <li>
+                                <a href="#"><img class="round_img" src="spb.png" width="120px" height="120px"
+                                        alt="speed_boat"></a>
+                                <p style="text-align: center;">Beach</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div>
+        <nav class="navbar navbar-expand-sm">
+            <ul class="navbar-nav">
+                <li>
+                    <strong style="margin-left: 540px;">HAPPY CLIENTS</strong><br>
+                    <p style="margin-left: 490px;">what customer say about us and why love our services!</p>
+
+                    <!-- element to added to display each comment box next to each other & padding for space between comment box -->
+                    <div class="element" style="padding:10px">
+                        <div class="box arrow-bottom">
+                            <p style="font-size: 9px;">Lorem Ipsum<br><strong>Client Name</strong><br>United States</p>
+                        </div>
+                    </div>
+
+                    <div class="element" style="padding:10px">
+                        <div class="box arrow-bottom">
+                            <p style="font-size: 9px;">Lorem Ipsum<br><strong>Client Name</strong><br>United States</p>
+                            
+                        </div>
+                    </div>
+
+                    <div class="element" style="padding:10px">
+                        <div class="box arrow-bottom">
+                            <p style="font-size: 9px;">Lorem Ipsum<br><strong>Client Name</strong><br>United States</p>
+                        </div>
+                    </div>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div style="background-color: #154074;">
+        <nav class="navbar navbar-expand-sm">
+            <ul class="navbar-nav">
+                <li style="color:rgb(246, 247, 246); margin-left: 200px">
+                    <strong style="color: cyan">Newsletter</strong><br>
+                    <p style="font-size: 12px;">Duis autumn</p>
+                </li>
+
+                <li style="color:rgb(246, 247, 246); margin-left: 30px">
+                    <strong style="color: cyan">Latest News</strong><br>
+                    <p style="font-size: 12px;">Postformal</p>
+                </li>
+
+                <li style="color:rgb(246, 247, 246); margin-left: 20px">
+                    <strong style="color: cyan">Tags</strong><br>
+
+                    <a class="box_tag" href="#" style="color:aliceblue">Agent Login</a>
+                    <a class="box_tag" href="#" style="color:aliceblue">Customer Login</a><br>
+                    <a class="box_tag" href="#" style="color:aliceblue">Not a Member?</a>
+                    <a class="box_tag" href="#" style="color:aliceblue">Contact</a><br>
+                    <a class="box_tag" href="#" style="color:aliceblue">New Horizons</a>
+                    <a class="box_tag" href="#" style="color:aliceblue">Landscape</a>
+                    <a class="box_tag" href="#" style="color:aliceblue">Tags</a><br>
+                    <a class="box_tag" href="#" style="color:aliceblue">Nice</a>
+                    <a class="box_tag" href="#" style="color:aliceblue">Some</a>
+                    <a class="box_tag" href="#" style="color:aliceblue">Portrait</a>
+
+                </li>
+                <li style="color:rgb(246, 247, 246); margin-left: 170px">
+                    <strong style="color: cyan">Address</strong><br>
+                    <p style="font-size: 12px;">
+                        Diesach Schcnbenser Aliee<br>
+                        167c, 10435 Berlin Germany<br>
+                        <a href="mailto: abc@example.com">Email: main@blindtechgenerator.de</a>
+                    </p>
+                    <a href="https://www.facebook.com/"><i style="color:aliceblue"
+                            class="fa-brands fa-facebook-f"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://twitter.com/"><i style="color:aliceblue"
+                            class="fa-brands fa-twitter"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.tumblr.com/"><i style="color:aliceblue"
+                            class="fa-brands fa-tumblr"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="https://www.instagram.com/"><i style="color:aliceblue"
+                            class="fa-brands fa-instagram"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                </li>
+                <li>
+
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <footer>
+        <div style="background-color: #154074;">
+            <nav class="navbar navbar-expand-sm">
+                <ul class="navbar-nav">
+
+                    <li style="color: cyan; margin-left: -250px">
+                        <strong style="margin-left: 540px;">Home&nbsp;&nbsp;&nbsp;&nbsp;</strong>::<br>
+                    </li>
+                    <li style="color:rgb(246, 247, 246); margin-left: -490px">
+                        <strong style="margin-left: 540px;">Destinations&nbsp;&nbsp;&nbsp;&nbsp;</strong>::<br>
+                    </li>
+                    <li style="color:rgb(246, 247, 246); margin-left: -520px">
+                        <strong style="margin-left: 540px;">Cruises&nbsp;&nbsp;&nbsp;&nbsp;</strong>::<br>
+                    </li>
+                    <li style="color:rgb(246, 247, 246); margin-left: -490px">
+                        <strong style="margin-left: 540px;">Specials&nbsp;&nbsp;&nbsp;&nbsp;</strong>::<br>
+                    </li>
+                    <li style="color:rgb(246, 247, 246); margin-left: -520px">
+                        <strong style="margin-left: 540px;">Holidays&nbsp;&nbsp;&nbsp;&nbsp;</strong>::<br>
+                    </li>
+                    <li style="color:rgb(246, 247, 246); margin-left: -520px">
+                        <strong style="margin-left: 540px;">Blog&nbsp;&nbsp;&nbsp;&nbsp;</strong>::<br>
+                    </li>
+                    <li style="color:rgb(246, 247, 246); margin-left: -520px">
+                        <strong style="margin-left: 540px;">Contact US</strong><br>
+                        <p style="margin-left: 190px;">Copyright &copy; voyage. All Rights Reserved.</p>
+                    </li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <div class="triangle-up" style="background-color: #154074; height: 60px;">
+
+            <nav class="navbar navbar-expand-sm">
+
+                <ul class="navbar-nav">
+                    <button onclick="topFunction()" id="myBtn" title="Go to top"><i
+                            class="fa-solid fa-arrow-up"></i></button>
+                </ul>
+
+
+
+            </nav>
+        </div>
+
+
+
+        <script>
+            // Get the button
+            let mybutton = document.getElementById("myBtn");
+
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () { scrollFunction() };
+
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
+            }
+
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+        </script>
+
+    </footer>
+
+</body>
+
+</html>
