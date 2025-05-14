@@ -2,6 +2,9 @@
 
 A travel agency website built with Bootstrap, featuring sections for destinations, cruises, specials, holidays, and blogs. The site includes a responsive carousel, dropdown menus, and client testimonials.
 
+Screenshots
+![Dashboard](screenshot/screenshot.png)
+
 ## Features
 - Responsive design using Bootstrap 4.6.2
 - Navigation with HOME, DESTINATIONS, CRUISES, SPECIALS, HOLIDAYS, and BLOGS
